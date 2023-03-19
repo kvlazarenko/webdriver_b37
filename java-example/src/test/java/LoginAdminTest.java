@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -12,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 
-public class MyFirstTest {
+public class LoginAdminTest {
   private WebDriver driver;
   private WebDriverWait wait;
 
@@ -25,11 +24,14 @@ public class MyFirstTest {
   }
 
   @Test
-  public void myFirstTest() {
-    driver.navigate().to("http://www.google.com");
-    driver.findElement(By.name("q")).sendKeys("webdriver");
-    driver.findElement(By.name("btnK")).click();
-    wait.until(titleIs("webdriver - Поиск в Google"));
+  public void loginAdminTest() {
+    driver.navigate().to("http://localhost:8080/litecart/admin/login.php");
+    driver.findElement(By.name("username")).clear();
+    driver.findElement(By.name("username")).sendKeys("admin");
+    driver.findElement(By.name("password")).clear();
+    driver.findElement(By.name("password")).sendKeys("admin");
+    driver.findElement(By.name("remember_me")).click();
+    driver.findElement(By.name("login")).click();
   }
 
   @AfterEach
